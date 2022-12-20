@@ -11,6 +11,7 @@ import {
   Platform, // новый импорт
   Alert,
   Button,
+  ImageBackground,
 } from "react-native";
 
 export default function App() {
@@ -27,25 +28,32 @@ export default function App() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <KeyboardAvoidingView // определяем ОС и настраиваем поведение клавиатуры
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <ImageBackground
+          style={styles.image}
+          source={require("./assets/images/backgroundMin.jpg")}
         >
-          <TextInput
-            value={name}
-            onChangeText={nameHandler}
-            placeholder="Username"
-            style={styles.input}
-          />
-          <TextInput
-            value={password}
-            onChangeText={passwordHandler}
-            placeholder="Password"
-            secureTextEntry={true}
-            style={styles.input}
-          />
-          <Button title={"Login"} style={styles.input} onPress={onLogin} />
-        </KeyboardAvoidingView>
-        <StatusBar style="auto" />
+          <View style={styles.containerImput}>
+            <KeyboardAvoidingView // определяем ОС и настраиваем поведение клавиатуры
+              behavior={Platform.OS == "ios" ? "padding" : "height"}
+            >
+              <TextInput
+                value={name}
+                onChangeText={nameHandler}
+                placeholder="Username"
+                style={styles.input}
+              />
+              <TextInput
+                value={password}
+                onChangeText={passwordHandler}
+                placeholder="Password"
+                secureTextEntry={true}
+                style={styles.input}
+              />
+              <Button title={"Login"} style={styles.input} onPress={onLogin} />
+            </KeyboardAvoidingView>
+            <StatusBar style="auto" />
+          </View>
+        </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -54,9 +62,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  containerImput: {
     alignItems: "center",
     justifyContent: "flex-end",
-    backgroundColor: "#ecf0f1",
+
     marginBottom: 30,
   },
   input: {
@@ -66,5 +76,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     marginBottom: 10,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+    resizeMode: "cover",
   },
 });
