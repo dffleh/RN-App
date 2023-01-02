@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   View,
+  Text,
   TextInput,
   TouchableWithoutFeedback, // импорт компонента обертки
   Keyboard, // импорт компонента клавиатуры
   KeyboardAvoidingView, // новый импорт
   Platform, // новый импорт
   Alert,
-  Button,
+  TouchableOpacity,
   ImageBackground,
 } from "react-native";
 
@@ -49,7 +50,13 @@ export default function App() {
                 secureTextEntry={true}
                 style={styles.input}
               />
-              <Button title={"Login"} style={styles.input} onPress={onLogin} />
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={onLogin}
+                style={styles.btn}
+              >
+                <Text style={styles.btnTitle}>Login</Text>
+              </TouchableOpacity>
             </KeyboardAvoidingView>
             <StatusBar style="auto" />
           </View>
@@ -66,20 +73,34 @@ const styles = StyleSheet.create({
   containerImput: {
     alignItems: "center",
     justifyContent: "flex-end",
-
     marginBottom: 30,
   },
   input: {
     width: 200,
     height: 44,
     padding: 10,
+    fontSize: 20,
     borderWidth: 1,
     borderColor: "black",
     marginBottom: 10,
+    color: "#fff",
   },
   image: {
     flex: 1,
     justifyContent: "center",
+    alignItems: "center",
     resizeMode: "cover",
+  },
+  btn: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FF6C00",
+    height: 44,
+    borderColor: "black",
+    borderRadius: 100,
+  },
+  btnTitle: {
+    fontSize: 20,
+    color: "#FFF",
   },
 });
